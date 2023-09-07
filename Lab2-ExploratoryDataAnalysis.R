@@ -6,7 +6,7 @@
 # Semester Duration: 21st August 2023 to 28th November 2023
 #
 # Lecturer: Allan Omondi
-# Contact: aomondi [at] strathmore.edu
+# Contact: aomondi [at] Strathmore.edu
 #
 # Note: The lecture contains both theory and practice. This file forms part of
 #       the practice. It has required lab work submissions that are graded for
