@@ -6,7 +6,7 @@
 # Semester Duration: 21st August 2023 to 28th November 2023
 #
 # Lecturer: Allan Omondi
-# Contact: aomondi [at] strathmore.edu
+# Contact: aomondi [at] Strathmore.edu
 #
 # Note: The lecture contains both theory and practice. This file forms part of
 #       the practice. It has required lab work submissions that are graded for
@@ -33,6 +33,7 @@ if (!is.element("renv", installed.packages()[, 1])) {
 require("renv")
 
 # Use renv::init() to initialize renv in a new or existing project.
+#New edit
 
 # The prompt received after executing renv::init() is as shown below:
 # This project already has a lockfile. What would you like to do?
