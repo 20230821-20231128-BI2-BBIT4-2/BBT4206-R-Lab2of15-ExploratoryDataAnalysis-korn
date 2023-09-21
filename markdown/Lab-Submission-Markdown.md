@@ -1,60 +1,40 @@
----
-editor_options: 
-  markdown: 
-    wrap: 72
----
-
 # Business Intelligence Lab Submission Markdown
 
-<Specify your group name here>
-<Specify the date when you submitted the lab>
+<Specify your group name here> <Specify the date when you submitted the lab>
 
 -   [Student Details](#student-details)
 -   [Setup Chunk](#setup-chunk)
--   [Loading the Student Performance
-    Dataset](#loading-the-student-performance-dataset)
+-   [Loading the Student Performance Dataset](#loading-the-student-performance-dataset)
     -   [Description of the Dataset](#description-of-the-dataset)
--   [\<You can Provide Another Appropriate Title Here if you
-    wish\>](#you-can-provide-another-appropriate-title-here-if-you-wish)
-    -   [\<You Can Have a Sub-Title Here if you
-        wish\>](#you-can-have-a-sub-title-here-if-you-wish)
-    -   [\<You Can Have Another Sub-Title Here if you
-        wish\>](#you-can-have-another-sub-title-here-if-you-wish)
+-   [\<You can Provide Another Appropriate Title Here if you wish\>](#you-can-provide-another-appropriate-title-here-if-you-wish)
+    -   [\<You Can Have a Sub-Title Here if you wish\>](#you-can-have-a-sub-title-here-if-you-wish)
+    -   [\<You Can Have Another Sub-Title Here if you wish\>](#you-can-have-another-sub-title-here-if-you-wish)
 
 # Student Details {#student-details}
 
-+----------------------------------+----------------------------------+
-| **Student ID Numbers and Names   | *\<list one student name, class  |
-| of Group Members**               | group (just the letter; A, B, or |
-|                                  | C), and ID per line, e.g.,       |
-|                                  | 123456 - A - John Leposo; you    |
-|                                  | should be between 2 and 5        |
-|                                  | members per group\>*             |
-|                                  |                                  |
-|                                  | 1.  ID - Class Group - Name      |
-|                                  |                                  |
-|                                  | 2.  ID - Class Group - Name      |
-|                                  |                                  |
-|                                  | 3.  ID - Class Group - Name      |
-|                                  |                                  |
-|                                  | 4.  ID - Class Group - Name      |
-|                                  |                                  |
-|                                  | 5.  ID - Class Group - Name      |
-+----------------------------------+----------------------------------+
-| **GitHub Classroom Group Name**  | *\<specify the name of the team  |
-|                                  | you created on GitHub            |
-|                                  | classroom\>*                     |
-+----------------------------------+----------------------------------+
-| **Course Code**                  | BBT4206                          |
-+----------------------------------+----------------------------------+
-| **Course Name**                  | Business Intelligence II         |
-+----------------------------------+----------------------------------+
-| **Program**                      | Bachelor of Business Information |
-|                                  | Technology                       |
-+----------------------------------+----------------------------------+
-| **Semester Duration**            | 21^st^ August 2023 to 28^th^     |
-|                                  | November 2023                    |
-+----------------------------------+----------------------------------+
++---------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Student ID Numbers and Names of Group Members** | *\<list one student name, class group (just the letter; A, B, or C), and ID per line, e.g., 123456 - A - John Leposo; you should be between 2 and 5 members per group\>* |
+|                                                   |                                                                                                                                                                          |
+|                                                   | 1.  ID - Class Group - Name                                                                                                                                              |
+|                                                   |                                                                                                                                                                          |
+|                                                   | 2.  ID - Class Group - Name                                                                                                                                              |
+|                                                   |                                                                                                                                                                          |
+|                                                   | 3.  ID - Class Group - Name                                                                                                                                              |
+|                                                   |                                                                                                                                                                          |
+|                                                   | 4.  ID - Class Group - Name                                                                                                                                              |
+|                                                   |                                                                                                                                                                          |
+|                                                   | 5.  ID - Class Group - Name                                                                                                                                              |
++---------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **GitHub Classroom Group Name**                   | *\<specify the name of the team you created on GitHub classroom\>*                                                                                                       |
++---------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Course Code**                                   | BBT4206                                                                                                                                                                  |
++---------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Course Name**                                   | Business Intelligence II                                                                                                                                                 |
++---------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Program**                                       | Bachelor of Business Information Technology                                                                                                                              |
++---------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Semester Duration**                             | 21^st^ August 2023 to 28^th^ November 2023                                                                                                                               |
++---------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 # Setup Chunk {#setup-chunk}
 
@@ -79,13 +59,10 @@ require("readr")
 
 ------------------------------------------------------------------------
 
-**Note:** the following "*KnitR*" options have been set as the defaults
-in this markdown:\
+**Note:** the following "*KnitR*" options have been set as the defaults in this markdown:\
 `knitr::opts_chunk$set(echo = TRUE, warning = FALSE, eval = TRUE, collapse = FALSE, tidy.opts = list(width.cutoff = 80), tidy = TRUE)`.
 
-More KnitR options are documented here
-<https://bookdown.org/yihui/rmarkdown-cookbook/chunk-options.html> and
-here <https://yihui.org/knitr/options/>.
+More KnitR options are documented here <https://bookdown.org/yihui/rmarkdown-cookbook/chunk-options.html> and here <https://yihui.org/knitr/options/>.
 
 ``` r
 knitr::opts_chunk$set(
@@ -99,8 +76,7 @@ knitr::opts_chunk$set(
 
 ------------------------------------------------------------------------
 
-**Note:** the following "*R Markdown*" options have been set as the
-defaults in this markdown:
+**Note:** the following "*R Markdown*" options have been set as the defaults in this markdown:
 
 > output:
 >
@@ -116,9 +92,7 @@ defaults in this markdown:
 
 # Loading the Student Performance Dataset {#loading-the-student-performance-dataset}
 
-The 20230412-20230719-BI1-BBIT4-1-StudentPerformanceDataset is then
-loaded. The dataset and its metadata are available here:
-<https://drive.google.com/drive/folders/1-BGEhfOwquXF6KKXwcvrx7WuZXuqmW9q?usp=sharing>
+The 20230412-20230719-BI1-BBIT4-1-StudentPerformanceDataset is then loaded. The dataset and its metadata are available here: <https://drive.google.com/drive/folders/1-BGEhfOwquXF6KKXwcvrx7WuZXuqmW9q?usp=sharing>
 
 ``` r
 student_performance_dataset <-
@@ -259,8 +233,7 @@ student_performance_dataset <-
 
 ## Description of the Dataset {#description-of-the-dataset}
 
-We then display the number of observations and number of variables. We
-have 101 observations and 100 variables to work with.
+We then display the number of observations and number of variables. We have 101 observations and 100 variables to work with.
 
 ``` r
 dim(student_performance_dataset)
@@ -270,11 +243,7 @@ dim(student_performance_dataset)
 ## [1] 101 100
 ```
 
-Next, we display the quartiles for each numeric variable[*... think of
-this process as **"storytelling using the data."** Tell us what is
-happening; tell us what you are discovering as you proceed with the
-markdown; walk us through your code step-by-step (a code
-walkthrough).*]{#highlight style="color: blue"}
+Next, we display the quartiles for each numeric variable[*... think of this process as **"storytelling using the data."** Tell us what is happening; tell us what you are discovering as you proceed with the markdown; walk us through your code step-by-step (a code walkthrough).*]{#highlight style="color: blue"}
 
 ``` r
 summary(student_performance_dataset)
@@ -553,14 +522,14 @@ summary(student_performance_dataset)
 ##  3rd Qu.:5.00                            
 ##  Max.   :5.00                            
 ##  NA's   :1                               
-##  D - 1. \nWrite two things you like about the teaching and learning in this unit so far.
-##  Length:101                                                                             
-##  Class :character                                                                       
-##  Mode  :character                                                                       
-##                                                                                         
-##                                                                                         
-##                                                                                         
-##                                                                                         
+##  D - 1. \r\nWrite two things you like about the teaching and learning in this unit so far.
+##  Length:101                                                                               
+##  Class :character                                                                         
+##  Mode  :character                                                                         
+##                                                                                           
+##                                                                                           
+##                                                                                           
+##                                                                                           
 ##  D - 2. Write at least one recommendation to improve the teaching and learning in this unit (for the remaining weeks in the semester)
 ##  Length:101                                                                                                                          
 ##  Class :character                                                                                                                    
@@ -719,5 +688,4 @@ Describe the code chunk here:
 # Fill this with other R related code that will be executed when the R markdown
 ```
 
-**etc.** as per the lab submission requirements. Be neat and communicate
-in a clear and logical manner.
+**etc.** as per the lab submission requirements. Be neat and communicate in a clear and logical manner.
