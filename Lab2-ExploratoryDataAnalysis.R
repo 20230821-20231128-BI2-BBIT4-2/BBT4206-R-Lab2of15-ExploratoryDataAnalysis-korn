@@ -33,6 +33,7 @@ if (!is.element("renv", installed.packages()[, 1])) {
 require("renv")
 
 # Use renv::init() to initialize renv in a new or existing project.
+#New edit
 
 # The prompt received after executing renv::init() is as shown below:
 # This project already has a lockfile. What would you like to do?
