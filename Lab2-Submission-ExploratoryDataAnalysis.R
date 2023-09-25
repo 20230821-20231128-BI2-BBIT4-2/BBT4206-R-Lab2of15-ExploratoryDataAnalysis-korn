@@ -1,3 +1,18 @@
+# *****************************************************************************
+# Lab 2: Exploratory Data Analysis ----
+#
+# Course Code: BBT4206
+# Course Name: Business Intelligence II
+# Semester Duration: 21st August 2023 to 28th November 2023
+#
+# Lecturer: Allan Omondi
+# Contact: aomondi [at] Strathmore.edu
+#
+# Note: The lecture contains both theory and practice. This file forms part of
+#       the practice. It has required lab work submissions that are graded for
+#       coursework marks.
+#
+
 # STEP 1. Install and use renv ----
 
 if (!is.element("renv", installed.packages()[, 1])) {
@@ -174,7 +189,7 @@ ggcorrplot(cor(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset[, 2:4]))
 
 ### STEP 22. Create a Scatter Plot ----
 ggplot(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset,
-       aes(x = YOB, y = motivator, shape = GRADE, color = GRADE)) +
+       aes(x = study_time, y = motivator, shape = GRADE, color = GRADE)) +
   geom_point() +
   geom_smooth(method = lm)
 
@@ -184,7 +199,7 @@ if (!is.element("caret", installed.packages()[, 1])) {
   install.packages("caret", dependencies = TRUE)
 }
 require("caret")
-featurePlot(x = X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset[, 2:99], y = X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset[, 100], plot = "box")
+featurePlot(x = X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset[, 42:48], y = X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset[, 2], plot = "box")
 
 # **Deinitialization: Create a snapshot of the R environment ----
 renv::snapshot()
