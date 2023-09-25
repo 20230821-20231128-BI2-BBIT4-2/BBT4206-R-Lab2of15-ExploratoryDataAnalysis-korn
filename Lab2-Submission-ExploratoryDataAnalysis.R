@@ -105,3 +105,14 @@ sapply(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset[, 4],  skewness,
 # only, not categorical values.
 X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset_cov <- cov(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset[, 4])
 View(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset_cov)
+
+## STEP 15. Measure the correlation between variables ----
+X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset_cor <- cor(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset[, 4])
+View(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset_cor)
+
+## STEP 16. Perform ANOVA on the “crop_dataset” dataset ----
+# ANOVA (Analysis of Variance) is a statistical test used to estimate how a
+# quantitative dependent variable changes according to the levels of one or
+# more categorical independent variables.
+X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset_one_way_anova <- aov(meditate ~ internet, data = X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset)
+summary(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset_one_way_anova)
