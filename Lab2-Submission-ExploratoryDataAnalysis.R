@@ -125,3 +125,66 @@ summary(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset_two_way_anova)
 # Two-Way ANOVA
 X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset_two_way_anova <- aov(drop_bi_now ~ read_content_before_lecture + study_time + find_terms_I_do_not_know, data =X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset)
 summary(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset_two_way_anova)
+
+### STEP 17. Create Histograms for Each Numeric Attribute ----
+
+X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset_histo <- as.numeric(unlist(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset[, 2]))
+hist(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset_histo, main = names(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset)[2])
+
+### STEP 18. Create Box and Whisker Plots for Each Numeric Attribute
+par(mfrow = c(1, 5))
+for (i in 2:5) {
+  boxplot(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset[, i], main = names(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset)[i])
+}
+
+par(mfrow = c(1, 5))
+for (i in 10:12) {
+  boxplot(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset[, i], main = names(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset)[i])
+}
+
+
+### STEP 19. Create Bar Plots for Each Categorical Attribute ----
+barplot(table(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset[, 2]), main = names(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset)[2])
+barplot(table(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset[, 100]), main = names(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset)[100])
+
+### STEP 20. Create a Missingness Map to Identify Missing Data ----
+# “Amelia” package.
+
+if (!is.element("Amelia", installed.packages()[, 1])) {
+  install.packages("Amelia", dependencies = TRUE)
+}
+require("Amelia")
+
+missmap(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset, col = c("red", "grey"), legend = TRUE)
+
+## Multivariate Plots ----
+
+### STEP 21. Create a Correlation Plot ----
+if (!is.element("corrplot", installed.packages()[, 1])) {
+  install.packages("corrplot", dependencies = TRUE)
+}
+require("corrplot")
+corrplot(cor(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset[, 2:4]), method = "shade")
+
+if (!is.element("ggcorrplot", installed.packages()[, 1])) {
+  install.packages("ggcorrplot", dependencies = TRUE)
+}
+require("ggcorrplot")
+ggcorrplot(cor(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset[, 2:4]))
+
+### STEP 22. Create a Scatter Plot ----
+ggplot(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset,
+       aes(x = YOB, y = motivator, shape = GRADE, color = GRADE)) +
+  geom_point() +
+  geom_smooth(method = lm)
+
+
+### STEP 23. Create Multivariate Box and Whisker Plots by Class ----
+if (!is.element("caret", installed.packages()[, 1])) {
+  install.packages("caret", dependencies = TRUE)
+}
+require("caret")
+featurePlot(x = X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset[, 2:99], y = X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset[, 100], plot = "box")
+
+# **Deinitialization: Create a snapshot of the R environment ----
+renv::snapshot()
