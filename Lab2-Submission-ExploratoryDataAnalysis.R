@@ -21,7 +21,7 @@ if (!is.element("languageserver", installed.packages()[, 1])) {
 require("languageserver")
 
 ## STEP 2: Download sample datasets ----
-X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset <- read_csv("data/20230412-20230719-BI1-BBIT4-1-StudentPerformanceDataset.csv")
+X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset <- read.csv("data/20230412-20230719-BI1-BBIT4-1-StudentPerformanceDataset.csv")
 
 if (!is.element("readr", installed.packages()[, 1])) {
   install.packages("readr", dependencies = TRUE)
@@ -36,7 +36,7 @@ require("readr")
 
 
 
-View(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset.csv)
+View(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset)
 
 
 ## STEP 4. Load sample datasets that are provided as part of a package ----
@@ -82,10 +82,10 @@ print(student_performance_romantic_relationships_mode)
 ### STEP 9. Measure the distribution of the data for each variable ----
 summary(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset)
 #check on this
-sapply(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset[,28], sd)
+sapply(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset[,21], sd)
 
 ### STEP 11. Measure the variance of each variable ----
-sapply(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset[,-1], var)
+sapply(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset[,2:55], var)
 
 ### STEP 12. Measure the kurtosis of each variable ----
 # The Kurtosis informs you of how often outliers occur in the results.
@@ -103,5 +103,25 @@ sapply(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset[, 4],  skewness,
 ## STEP 14. Measure the covariance between variables ----
 # Note that the covariance and the correlation are computed for numeric values
 # only, not categorical values.
-X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset_cov <- cov(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset[, 4])
+X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset_cov <- cov(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset[ ,2:55])
 View(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset_cov)
+
+## STEP 15. Measure the correlation between variables ----
+X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset_cor <- cor(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset[ ,2:55])
+View(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset_cor)
+## STEP 16. Perform ANOVA on the dataset ----
+# ANOVA (Analysis of Variance) is a statistical test used to estimate how a
+# quantitative dependent variable changes
+
+# One-Way ANOVA 
+X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset_one_way_anova <- aov(motivator ~ GRADE, data =X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset)
+summary(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset_one_way_anova)
+
+
+# Two-Way ANOVA
+X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset_two_way_anova <- aov(drop_bi_now ~ read_content_before_lecture * study_time, data =X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset)
+summary(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset_two_way_anova)
+
+# Two-Way ANOVA
+X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset_two_way_anova <- aov(drop_bi_now ~ read_content_before_lecture + study_time + find_terms_I_do_not_know, data =X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset)
+summary(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset_two_way_anova)
