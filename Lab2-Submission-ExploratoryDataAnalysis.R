@@ -89,8 +89,8 @@ cbind(frequency = table(student_performance_romantic_relationships_freq),
 # Unfortunately, R does not have an in-built function for calculating the mode.
 # We, therefore, must manually create a function that can calculate the mode.
 
-student_performance_romantic_relationships_mode <- names(table(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset$romantic_relationships))[
-  which(table(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset$romantic_relationships) == max(table(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset$romantic_relationships)))
+student_performance_romantic_relationships_mode <- names(table(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset$study_time))[
+  which(table(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset$study_time) == max(table(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset$study_time)))
 ]
 print(student_performance_romantic_relationships_mode)
 
@@ -199,7 +199,9 @@ if (!is.element("caret", installed.packages()[, 1])) {
   install.packages("caret", dependencies = TRUE)
 }
 require("caret")
-featurePlot(x = X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset[, 42:48], y = X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset[, 2], plot = "box")
+featurePlot(x = X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset[, 95:99], y = X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset[, 100], plot = "box")
+
 
 # **Deinitialization: Create a snapshot of the R environment ----
 renv::snapshot()
+
