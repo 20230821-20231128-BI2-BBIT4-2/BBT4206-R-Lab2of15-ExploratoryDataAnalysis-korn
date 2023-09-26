@@ -98,6 +98,9 @@ knitr::opts_chunk$set(
 The 20230412-20230719-BI1-BBIT4-1-StudentPerformanceDataset is then loaded. The dataset and its metadata are available here: <https://drive.google.com/drive/folders/1-BGEhfOwquXF6KKXwcvrx7WuZXuqmW9q?usp=sharing>
 
 ```{r Load Dataset}
+
+require("readr")
+
 X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset <-
   readr::read_csv(
                   here::here("data", "20230412-20230719-BI1-BBIT4-1-StudentPerformanceDataset.csv"), # nolint
@@ -248,10 +251,10 @@ Next, we display the quartiles for each numeric variable using the summary() fun
 summary(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset)
 ```
 
-After that, we calculate the variance of each variable, which helps us understand how the data spreads out.
+After that, we calculate the variance of TOTALS, which helps us understand how the data spreads out.
 
 ```{r Measure The Variance}
-sapply(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset[,2:55], var)
+sapply(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset[,99], var)
 ```
 
 We then assess the kurtosis of the chosen variable using the `kurtosis` function from the "e1071" package to gain insights into the frequency of outliers in the data.
@@ -262,36 +265,27 @@ if (!is.element("e1071", installed.packages()[, 1])) {
 }
 require("e1071")
 
-sapply(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset[, 4],  kurtosis, type = 2)
+sapply(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset[, 99],  kurtosis, type = 2)
 ```
 
 The skewness of the specific variable is then calculated to understand the asymmetry of its distribution.
 
 ```{r Calculate Skewness}
-sapply(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset[, 4],  skewness, type = 2)
+sapply(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset[, 99],  skewness, type = 2)
 ```
 
 We then proceed to measure the covariance between variables using the `cov()` function, this is computed for numeric values only, not categorical values.
 
 ```{r Calculate Covariance}
-study_time_for_covariance <- X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset$study_time
-
-# Check if the variable is numeric or logical
-if (is.numeric(study_time_for_covariance) || is.logical(study_time_for_covariance)) {
-  covariance_matrix <- cov(study_time_for_covariance)
-  View(covariance_matrix)
-} else {
-  cat("The selected variable is not numeric or logical. Covariance cannot be calculated.")
-}
+X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset_cov <- cov(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset[, 99])
+View(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset_cov)
 
 ```
 
 Following that,we measure the correlation between variables using the `cor()` function.
 
-```{r Calculate Correlation}
-# Select only numeric columns for correlation
-numeric_columns <- X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset[, sapply(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset, is.numeric)]
+\`\`\`{r Calculate Correlation} \# Select only numeric columns for correlation numeric_columns \<- X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset[, sapply(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset, is.numeric)]
 
 # Calculate correlation
-correlation_matrix <- cor(numeric_columns, use = "complete.obs")
-View(correlation_matrix)
+
+correlation_matrix \<- cor(numeric_columns, use = "complete.obs") View(correlation_matrix)
