@@ -8,12 +8,6 @@ Business Intelligence Lab Submission Markdown
 - [Loading the Student Performance
   Dataset](#loading-the-student-performance-dataset)
   - [Description of the Dataset](#description-of-the-dataset)
-- [\<You can Provide Another Appropriate Title Here if you
-  wish\>](#you-can-provide-another-appropriate-title-here-if-you-wish)
-  - [\<You Can Have a Sub-Title Here if you
-    wish\>](#you-can-have-a-sub-title-here-if-you-wish)
-  - [\<You Can Have Another Sub-Title Here if you
-    wish\>](#you-can-have-another-sub-title-here-if-you-wish)
 
 # Student Details
 
@@ -33,7 +27,7 @@ between 2 and 5 members per group&gt;</em></p>
 <li><p>134644 - C - Sebastian Mira</p></li>
 <li><p>136009 - C - Sera Ndabari</p></li>
 <li><p>131582 - C - Njeri Njuguna</p></li>
-<li><p>131589 - C - Agnes Onyango</p></li>
+<li><p>131589 - C - Agnes Anyango</p></li>
 </ol></td>
 </tr>
 <tr class="even">
@@ -124,9 +118,9 @@ loaded. The dataset and its metadata are available here:
 <https://drive.google.com/drive/folders/1-BGEhfOwquXF6KKXwcvrx7WuZXuqmW9q?usp=sharing>
 
 ``` r
-student_performance_dataset <-
+X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset <-
   readr::read_csv(
-                  "../data/20230412-20230719-BI1-BBIT4-1-StudentPerformanceDataset.CSV", # nolint
+                  here::here("data", "20230412-20230719-BI1-BBIT4-1-StudentPerformanceDataset.csv"), # nolint
                   col_types =
                   readr::cols(
                               class_group =
@@ -266,19 +260,16 @@ We then display the number of observations and number of variables. We
 have 101 observations and 100 variables to work with.
 
 ``` r
-dim(student_performance_dataset)
+dim(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset)
 ```
 
     ## [1] 101 100
 
-Next, we display the quartiles for each numeric
-variable<span id="highlight" style="color: blue">*… think of this
-process as **“storytelling using the data.”** Tell us what is happening;
-tell us what you are discovering as you proceed with the markdown; walk
-us through your code step-by-step (a code walkthrough).*</span>
+Next, we display the quartiles for each numeric variable using the
+summary() function.
 
 ``` r
-summary(student_performance_dataset)
+summary(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset)
 ```
 
     ##  class_group gender      YOB             regret_choosing_bi drop_bi_now
@@ -698,25 +689,96 @@ summary(student_performance_dataset)
     ##  Max.   :87.72                                
     ## 
 
-# \<You can Provide Another Appropriate Title Here if you wish\>
-
-Describe the code chunk here:
-
-``` r
-# Fill this with R related code that will be executed when the R markdown file
-```
-
-## \<You Can Have a Sub-Title Here if you wish\>
+After that, we calculate the variance of each variable, which helps us
+understand how the data spreads out.
 
 ``` r
-# Fill this with other R related code that will be executed when the R markdown
+# Identify numeric columns
+numeric_columns <- sapply(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset[,
+    2:55], is.numeric)
+
+# Calculate variance for numeric columns
+variance_values <- sapply(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset[,
+    2:55][, numeric_columns], var)
+
+# Print variance values
+variance_values
 ```
 
-## \<You Can Have Another Sub-Title Here if you wish\>
+    ##                                                                                  repeats_since_Y1 
+    ##                                                                                                NA 
+    ##                                                                  A - 1. I am enjoying the subject 
+    ##                                                                                                NA 
+    ##                                                              A - 2. Classes start and end on time 
+    ##                                                                                                NA 
+    ##   A - 3. The learning environment is participative, involves learning by doing and is group-based 
+    ##                                                                                                NA 
+    ## A - 4. The subject content is delivered according to the course outline and meets my expectations 
+    ##                                                                                                NA 
+    ##                                               A - 5. The topics are clear and logically developed 
+    ##                                                                                                NA 
+    ##                                                 A - 6. I am developing my oral and writing skills 
+    ##                                                                                                NA 
+    ##                                A - 7. I am developing my reflective and critical reasoning skills 
+    ##                                                                                                NA
+
+We then assess the kurtosis of the chosen variable using the `kurtosis`
+function from the “e1071” package to gain insights into the frequency of
+outliers in the data.
 
 ``` r
-# Fill this with other R related code that will be executed when the R markdown
+if (!is.element("e1071", installed.packages()[, 1])) {
+    install.packages("e1071", dependencies = TRUE)
+}
+require("e1071")
 ```
 
-**etc.** as per the lab submission requirements. Be neat and communicate
-in a clear and logical manner.
+    ## Loading required package: e1071
+
+``` r
+sapply(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset[, 4], kurtosis, type = 2)
+```
+
+    ## regret_choosing_bi 
+    ##                 NA
+
+The skewness of the specific variable is then calculated to understand
+the asymmetry of its distribution.
+
+``` r
+sapply(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset[, 4], skewness, type = 2)
+```
+
+    ## regret_choosing_bi 
+    ##                 NA
+
+We then proceed to measure the covariance between variables using the
+`cov()` function, this is computed for numeric values only, not
+categorical values.
+
+``` r
+study_time_for_covariance <- X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset$study_time
+
+# Check if the variable is numeric or logical
+if (is.numeric(study_time_for_covariance) || is.logical(study_time_for_covariance)) {
+    covariance_matrix <- cov(study_time_for_covariance)
+    View(covariance_matrix)
+} else {
+    cat("The selected variable is not numeric or logical. Covariance cannot be calculated.")
+}
+```
+
+    ## The selected variable is not numeric or logical. Covariance cannot be calculated.
+
+Following that,we measure the correlation between variables using the
+`cor()` function.
+
+``` r
+# Select only numeric columns for correlation
+numeric_columns <- X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset[, sapply(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset,
+    is.numeric)]
+
+# Calculate correlation
+correlation_matrix <- cor(numeric_columns, use = "complete.obs")
+View(correlation_matrix)
+```

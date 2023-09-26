@@ -26,7 +26,7 @@ editor_options:
 |                                                   |                                                                                                                                                                          |
 |                                                   | 4.  131582 - C - Njeri Njuguna                                                                                                                                           |
 |                                                   |                                                                                                                                                                          |
-|                                                   | 5.  131589 - C - Agnes Onyango                                                                                                                                           |
+|                                                   | 5.  131589 - C - Agnes Anyango                                                                                                                                           |
 +---------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **GitHub Classroom Group Name**                   | *\<Korn\>*                                                                                                                                                               |
 +---------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -98,9 +98,9 @@ knitr::opts_chunk$set(
 The 20230412-20230719-BI1-BBIT4-1-StudentPerformanceDataset is then loaded. The dataset and its metadata are available here: <https://drive.google.com/drive/folders/1-BGEhfOwquXF6KKXwcvrx7WuZXuqmW9q?usp=sharing>
 
 ```{r Load Dataset}
-student_performance_dataset <-
+X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset <-
   readr::read_csv(
-                  "../data/20230412-20230719-BI1-BBIT4-1-StudentPerformanceDataset.CSV", # nolint
+                  here::here("data", "20230412-20230719-BI1-BBIT4-1-StudentPerformanceDataset.csv"), # nolint
                   col_types =
                   readr::cols(
                               class_group =
@@ -238,34 +238,60 @@ student_performance_dataset <-
 
 We then display the number of observations and number of variables. We have 101 observations and 100 variables to work with.
 
-```{r Your Fourth Code Chunk}
-dim(student_performance_dataset)
+```{r Preview the Loaded Datasets}
+dim(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset)
 ```
 
-Next, we display the quartiles for each numeric variable[*... think of this process as **"storytelling using the data."** Tell us what is happening; tell us what you are discovering as you proceed with the markdown; walk us through your code step-by-step (a code walkthrough).*]{#highlight style="color: blue"}
+Next, we display the quartiles for each numeric variable using the summary() function.
 
-```{r Your Fifth Code Chunk}
-summary(student_performance_dataset)
+```{r Display the Quartiles for each Variable}
+summary(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset)
 ```
 
-# \<You can Provide Another Appropriate Title Here if you wish\>
+After that, we calculate the variance of each variable, which helps us understand how the data spreads out.
 
-Describe the code chunk here:
-
-```{r Your Sixth Code Chunk}
-# Fill this with R related code that will be executed when the R markdown file
+```{r Measure The Variance}
+sapply(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset[,2:55], var)
 ```
 
-## \<You Can Have a Sub-Title Here if you wish\>
+We then assess the kurtosis of the chosen variable using the `kurtosis` function from the "e1071" package to gain insights into the frequency of outliers in the data.
 
-```{r Your Seventh Code Chunk}
-# Fill this with other R related code that will be executed when the R markdown
+```{r Calculate Kurtosis}
+if (!is.element("e1071", installed.packages()[, 1])) {
+  install.packages("e1071", dependencies = TRUE)
+}
+require("e1071")
+
+sapply(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset[, 4],  kurtosis, type = 2)
 ```
 
-## \<You Can Have Another Sub-Title Here if you wish\>
+The skewness of the specific variable is then calculated to understand the asymmetry of its distribution.
 
-```{r Your Eighth Code Chunk}
-# Fill this with other R related code that will be executed when the R markdown
+```{r Calculate Skewness}
+sapply(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset[, 4],  skewness, type = 2)
 ```
 
-**etc.** as per the lab submission requirements. Be neat and communicate in a clear and logical manner.
+We then proceed to measure the covariance between variables using the `cov()` function, this is computed for numeric values only, not categorical values.
+
+```{r Calculate Covariance}
+study_time_for_covariance <- X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset$study_time
+
+# Check if the variable is numeric or logical
+if (is.numeric(study_time_for_covariance) || is.logical(study_time_for_covariance)) {
+  covariance_matrix <- cov(study_time_for_covariance)
+  View(covariance_matrix)
+} else {
+  cat("The selected variable is not numeric or logical. Covariance cannot be calculated.")
+}
+
+```
+
+Following that,we measure the correlation between variables using the `cor()` function.
+
+```{r Calculate Correlation}
+# Select only numeric columns for correlation
+numeric_columns <- X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset[, sapply(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset, is.numeric)]
+
+# Calculate correlation
+correlation_matrix <- cor(numeric_columns, use = "complete.obs")
+View(correlation_matrix)
