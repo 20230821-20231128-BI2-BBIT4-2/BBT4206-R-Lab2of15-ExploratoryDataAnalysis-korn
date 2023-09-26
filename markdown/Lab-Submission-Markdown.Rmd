@@ -274,10 +274,10 @@ The skewness of the specific variable is then calculated to understand the asymm
 sapply(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset[, 99],  skewness, type = 2)
 ```
 
-We then proceed to measure the covariance between variables using the `cov()` function, this is computed for numeric values only, not categorical values.
+We then proceed to measure the covariance between variables using the `cov()` function, this is computed for numeric values only, not categorical values.This is the absenteesim percentage to the Totals column.
 
 ```{r Calculate Covariance}
-X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset_cov <- cov(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset[, 99])
+X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset_cov <- cov(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset[,96:99])
 View(X20230412_20230719_BI1_BBIT4_1_StudentPerformanceDataset_cov)
 
 ```
